@@ -1,6 +1,8 @@
 const userModel=require("../models/user")
 const bcrypt=require("bcrypt")
 const jwt= require("jsonwebtoken")
+const dotenv=require("dotenv")
+dotenv.config()
 const SECRET_KEY=process.env.SECRET_KEY
 const signup=async (req,res)=>{
     /*
@@ -26,7 +28,7 @@ const signup=async (req,res)=>{
             password:hashedPassword,
             username:username
         });
-
+        // console.log(SECRET_KEY);
         const token=jwt.sign({email:result.email,id:result._id},SECRET_KEY);
         res.status(200).json({user:result,token:token});    //201 means successfully record created...
 
